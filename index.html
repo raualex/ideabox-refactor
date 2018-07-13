@@ -7,13 +7,13 @@
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body>
-      <header role="banner">
-        <h1>ideabox</h1>
+      <header role="banner" class="header">
+        <h1 class="idea-header">idea</h1><h1 class="box-header">box</h1>
       </header>
-      <form role="textbox" aria-label="Idea submission form">
-        <input type="text" placeholder="Title" class="idea-title">
-        <input type="text" placeholder="Body" class="idea-body">
-        <button type="submit">save</button>
+      <form class="submission-form" role="textbox" aria-label="Idea submission form">
+        <input type="text" placeholder="Title" class="idea-title input-main">
+        <input type="text" placeholder="Body" class="idea-body input-main">
+        <button type="submit" class="save">save</button>
       </form>
       <section role="main">
         <form role="search">
@@ -21,10 +21,10 @@
         </form>
         <article role="article" aria-label="Saved Idea Card">
           <h2>Example Idea 1</h2>
-          <input type="image" src="delete.svg" alt="Delete Button">
+          <input type="image" src="delete.svg" alt="Delete Button" class="vote">
           <p>${/*variable*/}</p>
-          <input type="image" src="upvote.svg" alt="Upvote Button">
-          <input type="image" src="downvote.svg" alt="Downvote Button">
+          <input type="image" src="upvote.svg" alt="Upvote Button" class="vote">
+          <input type="image" src="downvote.svg" alt="Downvote Button" class="vote">
           <p>quality: swill</p>
         </article>
       </section>
