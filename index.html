@@ -2,10 +2,15 @@
   <html lang="en">
     <head>
       <title>Idea Box</title>
+      
       <link rel="stylesheet" href="style.css" type="text/css">
+      
       <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet">
+      
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
     </head>
+    
     <body>
       <header role="banner" class="header">
         <h1 class="idea-header">idea</h1><h1 class="box-header">box</h1>
@@ -15,19 +20,35 @@
         <input type="text" placeholder="Body" class="idea-body input-main">
         <button type="submit" class="save">save</button>
       </form>
+    
       <section role="main">
-        <form role="search">
-          <input placeholder="Search" type="search">
+    
+        <form role="search" class="search-section">
+    
+          <input placeholder="Search" type="search" class="search-bar">
+    
         </form>
+    
         <article role="article" aria-label="Saved Idea Card">
+    
           <h2>Example Idea 1</h2>
-          <input type="image" src="delete.svg" alt="Delete Button" class="vote">
-          <p>${/*variable*/}</p>
-          <input type="image" src="upvote.svg" alt="Upvote Button" class="vote">
-          <input type="image" src="downvote.svg" alt="Downvote Button" class="vote">
-          <p>quality: swill</p>
+
+    
+          <input type="image" src="delete.svg" alt="Delete Button" class="delete-button">
+    
+          <p class="idea-text">This is a test paragraph.  Details on ideas. fvniewnciwnciewnicnswicxnasincisnicsnicjns</p>
+    
+          <input type="image" src="upvote.svg" alt="Upvote Button" class="vote-button">
+    
+          <input type="image" src="downvote.svg" alt="Downvote Button" class="vote-button">
+    
+          <p class="quality">quality:</p>
+
+          <p class="quality-value">swill</p>
+   
         </article>
+   
       </section>
-      <script src="script.js" type="text/javascript"></script>
+      <!-- <script src="script.js" type="text/javascript"></script> -->
     </body>
   </html>
