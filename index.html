@@ -12,21 +12,13 @@
     </head>
     
     <body>
-    
-      <header role="banner">
-    
-        <h1>ideabox</h1>
-    
+      <header role="banner" class="header">
+        <h1 class="idea-header">idea</h1><h1 class="box-header">box</h1>
       </header>
-    
-      <form role="textbox" aria-label="Idea submission form">
-    
-        <input type="text" placeholder="Title" class="idea-title">
-    
-        <input type="text" placeholder="Body" class="idea-body">
-    
-        <button type="submit">save</button>
-    
+      <form class="submission-form" role="textbox" aria-label="Idea submission form">
+        <input type="text" placeholder="Title" class="idea-title input-main">
+        <input type="text" placeholder="Body" class="idea-body input-main">
+        <button type="submit" class="save">save</button>
       </form>
     
       <section role="main">
@@ -40,6 +32,7 @@
         <article role="article" aria-label="Saved Idea Card">
     
           <h2>Example Idea 1</h2>
+
     
           <input type="image" src="delete.svg" alt="Delete Button" class="delete-button">
     

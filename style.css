@@ -84,3 +84,52 @@ section {
 .vote-button {
   margin-bottom: 16px;
 }
+
+.header {
+  font-family: 'Roboto Slab';
+  font-size: 2.5em;
+  background-color: #E5F3F2;
+  width: 100%;
+  height: 10.7rem;
+  display: flex;
+  justify-content: center;
+}
+.idea-header {
+  color: #00a79D;
+  display: inline;
+}
+
+
+.box-header {
+  color: #6D6E71;
+  display: inline;
+}
+
+.submission-form {
+  width: 100%;
+  height: 21.1rem;
+  background-color: #E5F3F2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-main {
+  display: block;
+  width: 75%;
+  margin-top: 1.5rem;
+  font-size: 2rem;
+  height: 3.2rem;
+  color: #939598;
+  padding-left: .5rem;
+}
+
+.save {
+  width: 75%;
+  font-size: 2rem;
+  height: 3.8rem;
+  padding-bottom: 1rem;
+  margin-top: 2rem;
+  color: #FFFFFF;
+  background-color: #00A79D;
+}
