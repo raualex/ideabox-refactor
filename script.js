@@ -3,6 +3,8 @@ var bodyInput = $('.idea-body');
 var saveBtn = $('.save');
 var deleteBtn = $('.delete-button');
 var ideaContainer = $('.idea-container');
+var qualityArray = ['swill', 'probable', 'genius'];
+var qualityOutput = $('.quality-value');
 
 
 function addIdea() {
@@ -10,18 +12,22 @@ function addIdea() {
     
           <h2>${titleInput.val()}</h2>
           
-          <input type="image" src="delete.svg" alt="Delete Button" class="delete-button" onclick="deleteIdea(event)">
-    
+          <button type="button" class="delete-button" onclick="deleteIdea(event)"></button>
+
           <p class="idea-text">${bodyInput.val()}</p>
+         
+          <button type="button" class="vote-button upvote" onclick="upvote(event)"></button>
     
-          <input type="image" src="upvote.svg" alt="Upvote Button" class="vote-button">
-    
-          <input type="image" src="downvote.svg" alt="Downvote Button" class="vote-button">
-    
+          <button type="button" class="vote-button downvote" onclick="downvote(event)"></button>
+          
+          <div>
+
           <p class="quality">quality:</p>
 
-          <p class="quality-value">swill</p>
-   
+          <p class="quality-value" id="qv">swill</p>
+          
+          </div>
+
         </article>`
 
       if (titleInput.val().length < 1 || bodyInput.val().length < 1) {
@@ -40,36 +46,24 @@ function clearInputs() {
   bodyInput.val('');
 };
 
+function upvote(event) {
+  event.preventDefault();
+  console.log($('#qv').val());
+};
+
+function downvote(event) {
+  event.preventDefault();
+
+};
+
 saveBtn.on('click', function(event) {
   event.preventDefault();
   addIdea();
   clearInputs();
 });
 
-// testing hover functionality
 
-$('img.delete-button')
- .mouseenter(function() {
-  console.log('enter');
-    $(this).attr('src','delete-hover.svg');
-  });
 
-$('img.delete-button')
- .mouseleave(function() {
-  console.log('leave');
-  $(this).attr('src','delete.svg');
- });
-
- //  $("#delete-button").on({
- //   mouseenter: function(){
-
- // $(this).attr('src','delete-hover.svg');
- //  },
- //  mouseleave: function(){
-
- // $(this).attr('src','delete.svg');
- //  }
- //  });
 
 
 

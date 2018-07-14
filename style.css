@@ -5,8 +5,18 @@ article {
 
 body {
   height: 100vh;
+  margin-left: 0;
   margin-top: 0;
   width: 100vw;
+}
+
+div {
+  bottom: 10px;
+  display: inline-block;
+  font-size: 1.2em;
+  left: 12px;
+  position: relative;
+  width: 160px;
 }
 
 h2 {
@@ -17,21 +27,46 @@ h2 {
   width: 16%;
 }
 
-input[type="image"] {
-  margin-right: 10px;
-  margin-top: 20px;
-  width: 32px;
-}
-
 ::placeholder {
   color: #D1D3D4;
   font-family: 'Open Sans', sans-serif;
 }
 
 .delete-button {
+  background-image: url('delete.svg');
+  border: transparent;
   float: right;
+  height: 32px;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 32px;
   position: relative;
   top: -20px;
+}
+
+.delete-button:hover {
+  background-image: url('delete-hover.svg');
+  border: transparent;
+  float: right;
+  height: 32px;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 32px;
+  position: relative;
+  top: -20px;
+}
+
+.downvote {
+  background-image: url('downvote.svg');
+  background-position: cover;
+  background-repeat: no-repeat;
+  border: transparent;
+}
+
+.downvote:hover {
+  background-image: url('downvote-hover.svg');
+  background-position: cover;
+  background-repeat: no-repeat;
 }
 
 .idea-list {
@@ -71,16 +106,8 @@ input[type="image"] {
 }
 
 .quality, .quality-value {
-  bottom: 24px;
   color: #6D6E71;
-  display: inline;
-  left: 7px;
-  margin: 0.5px;
-  position: relative;
-}
-
-.vote-button {
-  margin-bottom: 16px;
+  display: inline-block;
 }
 
 .header {
@@ -136,3 +163,30 @@ input[type="image"] {
 .idea-title {
   margin-top: 3.7rem;
 }
+
+.upvote {
+  background-image: url('upvote.svg');
+  background-position: cover;
+  background-repeat: no-repeat;
+  border: transparent;
+}
+
+.upvote:hover {
+  background-image: url('upvote-hover.svg');
+  background-position: cover;
+  background-repeat: no-repeat;
+}
+
+.vote-button {
+  height: 32px;
+  margin-bottom: 16px;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 32px;
+}
+
+
+
+
+
+
