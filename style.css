@@ -1,11 +1,3 @@
-/*font-family: 'Open Sans', sans-serif;
-- h1, h2, p (quality info)
-*/
-
-/*font-family: 'Roboto Slab', serif;
-- placeholders, save button text, p (idea text)
-*/
-
 article {
   border-bottom: 1px solid #D1D3D4;
   margin-top: 10px;
@@ -13,6 +5,7 @@ article {
 
 body {
   height: 100vh;
+  margin-top: 0;
   width: 100vw;
 }
 
@@ -30,19 +23,23 @@ input[type="image"] {
   width: 32px;
 }
 
-section {
+::placeholder {
+  color: #D1D3D4;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.delete-button {
+  float: right;
+  position: relative;
+  top: -20px;
+}
+
+.idea-list {
   display: flex;
   flex-direction: column;
   margin: auto;
   height: 50vh;
   width: 53%;
-}
-
-.delete-button {
-  /*left: 570px;*/
-  float: right;
-  position: relative;
-  top: -20px;
 }
 
 .idea-text {
@@ -57,9 +54,8 @@ section {
 .search-bar {
   border: 2px solid #D1D3D4;
   border-radius: 0%;
-  font-size: 14pt;
-  padding: 0.2em;
-  padding-left: 0.7em;
+  font-size: 2rem;
+  padding-left: 0.5rem;
   width: 100%;
   height: 3.5rem;
   margin-bottom: 2rem;
