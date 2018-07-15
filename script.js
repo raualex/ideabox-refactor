@@ -7,23 +7,22 @@ var qualityArray = ['swill', 'probable', 'genius'];
 var qualityOutput = $('.quality-value');
 
 
-var Idea = function(title, body, quality) {
-  $(this).title = titleInput.val();
-  $(this).body = bodyInput.val();
+function Idea(title, body, quality) {
+  $(this).title = title;
+  $(this).body = body;
   if (quality === undefined) {
     $(this).quality = 'swill'
   } else $(this).quality = quality
-  addIdea();
 }
 
 function addIdea() {
   var ideaCard = `<article role="article" aria-label="Saved Idea Card">
     
-          <h2>${Idea.title}</h2>
+          <h2 contenteditable='true'>${titleInput.val()}</h2>
           
           <button type="button" class="delete-button" onclick="deleteIdea(event)"></button>
 
-          <p class="idea-text">${Idea.body}</p>
+          <p class="idea-text" contenteditable='true'>${bodyInput.val()}</p>
          
           <button type="button" class="vote-button upvote" onclick="upvote(event)"></button>
     
@@ -33,7 +32,7 @@ function addIdea() {
 
           <p class="quality">quality:</p>
 
-          <p class="quality-value" id="qv">${Idea.quality}</p>
+          <p class="quality-value">${qualityArray[0]}</p>
           
           </div>
 
@@ -57,7 +56,16 @@ function clearInputs() {
 
 function upvote(event) {
   event.preventDefault();
-  console.log($('#qv').val());
+ var swillU = qualityArray[0];
+ var probableU = qualityArray[1];
+ var geniusU = qualityArray[2];
+ console.log(qualityOutput.val())
+
+ // if (qualityOutput.val() = swillU) {
+ //  qualityOutput.val() = probableU;
+ // } else if (qualityOutput.val() = probableU) {
+ //  qualityOutput.val() = geniusU;
+ // }
 };
 
 function downvote(event) {
@@ -67,7 +75,8 @@ function downvote(event) {
 
 saveBtn.on('click', function(event) {
   event.preventDefault();
-  var Idea = new Idea
+  // var Idea = new Idea(titleInput.val(), bodyInput.val());
+  addIdea();
   clearInputs();
 });
 
