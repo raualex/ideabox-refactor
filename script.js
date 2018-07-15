@@ -7,14 +7,23 @@ var qualityArray = ['swill', 'probable', 'genius'];
 var qualityOutput = $('.quality-value');
 
 
+var Idea = function(title, body, quality) {
+  $(this).title = titleInput.val();
+  $(this).body = bodyInput.val();
+  if (quality === undefined) {
+    $(this).quality = 'swill'
+  } else $(this).quality = quality
+  addIdea();
+}
+
 function addIdea() {
   var ideaCard = `<article role="article" aria-label="Saved Idea Card">
     
-          <h2>${titleInput.val()}</h2>
+          <h2>${Idea.title}</h2>
           
           <button type="button" class="delete-button" onclick="deleteIdea(event)"></button>
 
-          <p class="idea-text">${bodyInput.val()}</p>
+          <p class="idea-text">${Idea.body}</p>
          
           <button type="button" class="vote-button upvote" onclick="upvote(event)"></button>
     
@@ -24,7 +33,7 @@ function addIdea() {
 
           <p class="quality">quality:</p>
 
-          <p class="quality-value" id="qv">swill</p>
+          <p class="quality-value" id="qv">${Idea.quality}</p>
           
           </div>
 
@@ -58,7 +67,7 @@ function downvote(event) {
 
 saveBtn.on('click', function(event) {
   event.preventDefault();
-  addIdea();
+  var Idea = new Idea
   clearInputs();
 });
 
