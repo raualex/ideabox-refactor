@@ -185,7 +185,19 @@ h2 {
   width: 32px;
 }
 
+@media screen and (max-width: 475px) {
+   
+   article {
+    height: 140px;
+   }
 
+   div {
+    position: relative;
+    left: 106px;
+    bottom: 68px;
+   }
+
+};
 
 
 
