@@ -4,7 +4,6 @@ var saveBtn = $('.save');
 var deleteBtn = $('.delete-button');
 var ideaContainer = $('.idea-container');
 var qualityArray = ['swill', 'probable', 'genius'];
-var qualityOutput = $('.quality-value');
 
 
 function Idea(title, body, quality) {
@@ -56,26 +55,34 @@ function clearInputs() {
 
 function upvote(event) {
   event.preventDefault();
+ var qualityOutput = $(event.target.parentNode).find('.quality-value').get(0)
  var swillU = qualityArray[0];
  var probableU = qualityArray[1];
  var geniusU = qualityArray[2];
- console.log(qualityOutput.val())
-
- // if (qualityOutput.val() = swillU) {
- //  qualityOutput.val() = probableU;
- // } else if (qualityOutput.val() = probableU) {
- //  qualityOutput.val() = geniusU;
- // }
+ 
+ if ($(qualityOutput).html() == swillU) {
+  $(qualityOutput).html(probableU);
+ } else if ($(qualityOutput).html() == probableU) {
+  $(qualityOutput).html(geniusU);
+ }
 };
 
 function downvote(event) {
   event.preventDefault();
+ var qualityOutput = $(event.target.parentNode).find('.quality-value').get(0)
+ var swillD = qualityArray[0];
+ var probableD = qualityArray[1];
+ var geniusD = qualityArray[2];
 
+ if ($(qualityOutput).html() == geniusD) {
+  $(qualityOutput).html(probableD);
+ } else if ($(qualityOutput).html() == probableD) {
+  $(qualityOutput).html(swillD);
+ } 
 };
 
 saveBtn.on('click', function(event) {
   event.preventDefault();
-  // var Idea = new Idea(titleInput.val(), bodyInput.val());
   addIdea();
   clearInputs();
 });
