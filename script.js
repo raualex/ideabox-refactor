@@ -21,11 +21,11 @@ saveBtn.on('click', function(event) {
   clearInputs();
 });
 
-$(window).keypress(function(e) {
-    if(e.which == 13) {
-        changeIdeaContent();
-    }
-});
+// $(window).keypress(function(e) {
+//     if(e.which == 13) {
+//         changeIdeaContent();
+//     }
+// });
 
 function Idea(constrTitle, constrBody) {
   this.id = Date.now();
@@ -34,14 +34,14 @@ function Idea(constrTitle, constrBody) {
   this.quality = qualityArray[0]
 };
 
-function changeIdeaContent(event) {
-  var editables = $(event.target).find('.title-edit').get(0);
-  console.log(editables)
-  for (var i = 0; i < editables.length; i++) {
-      var stringEdits = JSON.stringify(editables[i]);
-      // localStorage.setItem(editables[i].target.parent().data('unid'), stringEdits);
-    }
-}
+// function changeIdeaContent(event) {
+//   var editables = $(event.target).find('.title-edit').get(0);
+//   console.log(editables)
+//   for (var i = 0; i < editables.length; i++) {
+//       var stringEdits = JSON.stringify(editables[i]);
+//       // localStorage.setItem(editables[i].target.parent().data('unid'), stringEdits);
+//     }
+// }
 
 function storeIdea(idea) {
   var ideaToStore = idea;
