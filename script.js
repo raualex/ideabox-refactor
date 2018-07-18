@@ -11,18 +11,20 @@ saveBtn.on('click', function(event) {
   var constrBody = bodyInput.val();
   var idea = new Idea(constrTitle, constrBody);
   addIdea(idea);
+  if (titleInput.val().length >= 1 && bodyInput.val().length >= 1) {
+    storeIdea(idea);
+  }
   clearInputs();
-  storeIdea(idea);
 });
 
-// $(window).on('load', retrieveIdea);
+$(window).on('load', retrieveIdea);
 
 function Idea(constrTitle, constrBody) {
   this.id = Date.now();
   this.title = constrTitle;
   this.body = constrBody;
   this.quality = qualityArray[0]
-  console.log(this.id, this.title, this.body, this.quality);
+  // console.log(this.id, this.title, this.body, this.quality);
 }
 
 function storeIdea(idea) {
@@ -31,22 +33,22 @@ function storeIdea(idea) {
   localStorage.setItem(ideaToStore.id, stringifiedIdea);
 };
 
-// function retrieveIdea() {
-//   for (var i = 0; i < localStorage.length; i++) {
-//    var retrievedIdea = localStorage.getItem(localStorage.key(i));
-//    var parsedIdea = JSON.parse(retrievedIdea);
-//    addIdea(parsedIdea.title); 
-//   }
-// };
+function retrieveIdea() {
+  for (var i = 0; i < localStorage.length; i++) {
+   var retrievedIdea = localStorage.getItem(localStorage.key(i));
+   var parsedIdea = JSON.parse(retrievedIdea);
+   addIdea(parsedIdea); 
+  }
+};
 
-function addIdea(idea) {
-  var ideaCard = `<article role="article" aria-label="Saved Idea Card" data-unid="${idea.id}">
+function addIdea(idea, parsedIdea) {
+  var ideaCard = `<article role="article" aria-label="Saved Idea Card" data-unid="${idea.id || parsedIdea.id}">
     
-          <h2 contenteditable='true'>${idea.title}</h2>
+          <h2 contenteditable='true'>${idea.title || parsedIdea.title}</h2>
           
           <button type="button" class="delete-button" onclick="deleteIdea(event)"></button>
 
-          <p class="idea-text" contenteditable='true'>${idea.body}</p>
+          <p class="idea-text" contenteditable='true'>${idea.body || parsedIdea.body}</p>
          
           <button type="button" class="vote-button upvote" onclick="upvote(event)"></button>
     
@@ -56,7 +58,7 @@ function addIdea(idea) {
 
           <p class="quality">quality:</p>
 
-          <p class="quality-value">${idea.quality}</p>
+          <p class="quality-value">${idea.quality || parsedIdea.quality}</p>
           
           </div>
 
@@ -81,17 +83,25 @@ function clearInputs() {
 };
 
 function upvote(event) {
-  event.preventDefault();
+ event.preventDefault();
  var qualityOutput = $(event.target.parentNode).find('.quality-value').get(0)
  var swillU = qualityArray[0];
  var probableU = qualityArray[1];
  var geniusU = qualityArray[2];
+ var retrieveIdeaUp = localStorage.getItem($(event.target).parent().data("unid"));
+ var parsedIdeaUp = JSON.stringify(retrieveIdeaUp);
  
  if ($(qualityOutput).html() == swillU) {
-  $(qualityOutput).html(probableU);
+   $(qualityOutput).html(probableU);
+   // parsedIdeaUp.quality = probableU;
  } else if ($(qualityOutput).html() == probableU) {
-  $(qualityOutput).html(geniusU);
+   $(qualityOutput).html(geniusU);
+
  }
+   
+  // var ideaUp = 
+  // var stringIdeaUp = JSON.stringify(ideaUp);
+  // localStorage.setItem(ideaUp.id, stringIdeaUp);
 };
 
 function downvote(event) {
