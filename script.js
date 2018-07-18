@@ -37,18 +37,18 @@ function retrieveIdea() {
   for (var i = 0; i < localStorage.length; i++) {
    var retrievedIdea = localStorage.getItem(localStorage.key(i));
    var parsedIdea = JSON.parse(retrievedIdea);
-   addIdea(parsedIdea); 
+   addIdea(parsedIdea, true); 
   }
 };
 
-function addIdea(idea, parsedIdea) {
-  var ideaCard = `<article role="article" aria-label="Saved Idea Card" data-unid="${idea.id || parsedIdea.id}">
+function addIdea(idea, onload) {
+  var ideaCard = `<article role="article" aria-label="Saved Idea Card" data-unid="${idea.id}">
     
-          <h2 contenteditable='true'>${idea.title || parsedIdea.title}</h2>
+          <h2 contenteditable='true'>${idea.title}</h2>
           
           <button type="button" class="delete-button" onclick="deleteIdea(event)"></button>
 
-          <p class="idea-text" contenteditable='true'>${idea.body || parsedIdea.body}</p>
+          <p class="idea-text" contenteditable='true'>${idea.body}</p>
          
           <button type="button" class="vote-button upvote" onclick="upvote(event)"></button>
     
@@ -58,16 +58,16 @@ function addIdea(idea, parsedIdea) {
 
           <p class="quality">quality:</p>
 
-          <p class="quality-value">${idea.quality || parsedIdea.quality}</p>
+          <p class="quality-value">${idea.quality}</p>
           
           </div>
 
         </article>`
 
-      if (titleInput.val().length < 1 || bodyInput.val().length < 1) {
-    
-  } else ideaContainer.append(ideaCard);
-}
+  if ((titleInput.val().length >= 1 && bodyInput.val().length >= 1) || onload) {
+    ideaContainer.append(ideaCard)
+  };
+};
 
  function deleteIdea(event) {
   event.preventDefault();
