@@ -8,24 +8,25 @@ var saveBtn = $('.save');
 var titleInput = $('.idea-title');
 
 $(window).on('load', retrieveIdea);
-
-saveBtn.on('click', function(event) {
-  event.preventDefault();
-  var constrTitle = titleInput.val();
-  var constrBody = bodyInput.val();
-  var idea = new Idea(constrTitle, constrBody);
-  addIdea(idea);
-  if (titleInput.val().length >= 1 && bodyInput.val().length >= 1) {
-    storeIdea(idea);
-  }
-  clearInputs();
-});
+saveBtn.on('click', logIdea);
 
 function Idea(constrTitle, constrBody) {
   this.id = Date.now();
   this.title = constrTitle;
   this.body = constrBody;
   this.quality = qualityArray[0]
+};
+
+function logIdea(event) {
+  event.preventDefault();
+  var constrTitle = titleInput.val();
+  var constrBody = bodyInput.val();
+  var idea = new Idea(constrTitle, constrBody);
+  if (titleInput.val().length >= 1 && bodyInput.val().length >= 1) {
+    addIdea(idea);
+    storeIdea(idea);
+  }
+  clearInputs();
 };
 
 function storeIdea(idea) {
@@ -51,9 +52,9 @@ function addIdea(idea, onload) {
 
           <p class="idea-text" contenteditable='true'>${idea.body}</p>
          
-          <button type="button" class="vote-button upvote" onclick="upvote(event)"></button>
+          <button type="button" class="vote-button upvote" onclick="vote(event)"></button>
     
-          <button type="button" class="vote-button downvote" onclick="downvote(event)"></button>
+          <button type="button" class="vote-button downvote" onclick="vote(event)"></button>
           
           <div>
 
@@ -83,47 +84,42 @@ function clearInputs() {
   bodyInput.val('');
 };
 
-function upvote(event) {
+function vote(event) {
   event.preventDefault();
   var qualityOutput = $(event.target.parentNode).find('.quality-value').get(0)
-  var swillU = qualityArray[0];
-  var probableU = qualityArray[1];
-  var geniusU = qualityArray[2];
-  var retrieveIdeaUp = localStorage.getItem($(event.target).parent().data("unid"));
-  var parsedIdeaUp = JSON.parse(retrieveIdeaUp);
- 
- if ($(qualityOutput).html() == swillU) {
-   $(qualityOutput).html(probableU);
-   parsedIdeaUp.quality = probableU;
- } else if ($(qualityOutput).html() == probableU) {
-   $(qualityOutput).html(geniusU);
-   parsedIdeaUp.quality = geniusU;
- }
-   
-  var ideaUp = parsedIdeaUp
-  var stringIdeaUp = JSON.stringify(ideaUp);
-  localStorage.setItem(ideaUp.id, stringIdeaUp);
+  var qualityValue = qualityOutput.innerText
+  var qualityIndex = qualityArray.indexOf(qualityValue)
+  var retrieveIdea = localStorage.getItem($(event.target).parent().data("unid"));
+  var parsedIdea = JSON.parse(retrieveIdea);
+  if ((event.target).className === 'vote-button upvote') {
+   incrementIndex(parsedIdea, qualityOutput, qualityIndex);
+  } else {
+    deincrementIndex(parsedIdea, qualityOutput, qualityIndex);
+  }
 };
 
-function downvote(event) {
-  event.preventDefault();
-  var qualityOutput = $(event.target.parentNode).find('.quality-value').get(0)
-  var swillD = qualityArray[0];
-  var probableD = qualityArray[1];
-  var geniusD = qualityArray[2];
-  var retrieveIdeaDown = localStorage.getItem($(event.target).parent().data("unid"));
-  var parsedIdeaDown = JSON.parse(retrieveIdeaDown);
-
- if ($(qualityOutput).html() == geniusD) {
-  $(qualityOutput).html(probableD);
-  parsedIdeaDown.quality = probableD;
- } else if ($(qualityOutput).html() == probableD) {
-  $(qualityOutput).html(swillD);
-  parsedIdeaDown.quality = swillD;
- } 
-
-  var ideaDown = parsedIdeaDown
-  var stringIdeaDown = JSON.stringify(ideaDown);
-  localStorage.setItem(ideaDown.id, stringIdeaDown);
+ function incrementIndex(idea, output, index) {
+  if (index !== 2) {
+    index++
+    $(output).html(qualityArray[index]);
+    saveNewQuality(idea, qualityArray[index])
+  } else {
+    return
+  }
 };
 
+ function deincrementIndex(idea, output, index) {
+  if (index !== 0) {
+    index--
+    $(output).html(qualityArray[index]);
+    saveNewQuality(idea, qualityArray[index])
+  } else {
+    return
+  }
+};
+
+function saveNewQuality(idea, index) {
+  idea.quality = index;
+  var stringIdea = JSON.stringify(idea);
+  localStorage.setItem(idea.id, stringIdea);
+};
